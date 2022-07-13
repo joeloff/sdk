@@ -67,12 +67,13 @@ namespace Microsoft.DotNet.Workloads.Workload.List
         {
             InstalledWorkloadsCollection installedWorkloads = new(sdkWorkloadIds, $"SDK {_currentSdkFeatureBand}");
 
+#if !DOT_NET_BUILD_FROM_SOURCE
             if (OperatingSystem.IsWindows())
             {
                 VisualStudioWorkloads.GetInstalledWorkloads(WorkloadResolver, _currentSdkFeatureBand,
                     installedWorkloads);
             }
-
+#endif
             return installedWorkloads;
         }
 
